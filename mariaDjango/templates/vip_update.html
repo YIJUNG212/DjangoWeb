@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block style %}
+.updateform{
+width:300px;height:600px;
+margin:30px auto 10px;
+background-color:blue;
+padding:10px ;
+color:#FFF;
+position:relative;/*添加相對定位*/
+
+}
+.input_form{
+  box-sizing: border-box;
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+}
+.leftbutton{  
+ text-align:center;/*添加相對定位*/
+ margin-top:10px;/*調整按鈕與表格之間的間距*/
+ }
+{% endblock %}
+
+
+{% block content %}
+<form action="/seric/webuser/{{dict_data.id}}/update/update"  method="POST">
+<table class="updateform">
+{% csrf_token %} 
+<tr>
+<td>帳號<span class="input_form"  >{{ dict_data.username }}</span></td>
+</tr>
+
+<tr>
+<td>密碼<input class="input_form" type="text" id="password" name="password"    ></td>
+</tr>
+<tr>
+<td>確認密碼<input class="input_form" type="password" id="password_confirm" name="password_confirm"    ></td>
+</tr>
+<tr>
+<td>first_name<input class="input_form" type="text" id="first_name" name="first_name"   required value="{{ dict_data.first_name }}" ></td>
+</tr>
+<tr>
+<td>last_name<input class="input_form" type="text" id="last_name" name="last_name"   required value="{{ dict_data.last_name }}" ></td>
+</tr>
+
+
+
+<tr>
+<td>嗜好<input class="input_form" type="text" id="hobit" name="hobit"   required value="{{ dict_data.hobit }}" ></td>
+</tr>
+<tr>
+<td>住址<input class="input_form" type="text" id="addr" name="addr"   required value="{{ dict_data.addr }}" ></td>
+</tr>
+<tr>
+<td>電話<input class="input_form" type="tel" id="phone" name="phone"   required value="{{ dict_data.phone }}" ></td>
+</tr>
+
+
+
+
+</table>
+<div class="leftbutton"><button  onclick="showConfirmation();">update</button>
+<button onclick="back_to_index();">index</button>
+</div>
+
+</form>
+
+{% endblock %}
+{% block script   %}
+<!--目前設定可以透過JAVASCRIPT完成客製化功能,並在按下cancel時跳轉至指定url,只是系統不允許直接轉,所以要在setTimeout下執行-->
+<script>
+function showConfirmation() {
+    
+    var choice =confirm("確認更新嗎?!")
+    if(choice){
+        alert("you press the button")
+    }else{
+         alert("你按了取消按鈕");
+  <!-- 設定跳轉page及延遲時間-->
+    setTimeout(function() {
+      window.location.href = 'https://homepi.myftp.org/seric/webuser/{{dict_data.id}}/update/load';
+    }, 0);
+    }
+
+function back_to_index(){
+setTimeout(function(){
+    window.location.href = 'https://homepi.myftp.org/seric/index';
+}, 0);
+
+}
+}
+</script>
+
+
+
+{% endblock %}

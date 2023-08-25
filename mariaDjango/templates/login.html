@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+.login{margin:50px 150px 50px 150px;}
+{% endblock %}
+
+
+{% block content %}
+
+<form  class="login" action="login3" method="POST">
+{% csrf_token %}
+<!--藉由旗標的方式及if判斷式可以讓同頁面有login 跟logout的配置,但隨登入情況看到不同的東西-->
+{% if status == "login" %}
+<div><span> {{ message }}</span><a href="logout">登出</a></div>
+{% else %}
+<div>帳號
+<input type="text"  name="username" id="username"></div>
+<div>密碼
+<input type="password" name="password" id="password"></div>
+<div><button onclick=" login();">登入</button></div>
+
+{% endif %}
+<div>{{message}}</div>
+
+
+
+
+</form>
+
+{% endblock %}
+
+{% block script  %}
+<script>function login(){
+   var choice = confirm("login?!")
+   if(choice){
+    alert("you press the button")
+   }else{
+    alert("you canccel the button")
+    setTimeout(function(){
+        window.location.href="";
+    },0);
+
+   }
+}</script>
+{% endblock %}

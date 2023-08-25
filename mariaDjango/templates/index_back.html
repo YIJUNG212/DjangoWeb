@@ -1,0 +1,89 @@
+{% extends "base.html"  %}
+{% block style  %} 
+.photo_part{background-color:#f00;width:200px;height:200px; margin:50px 20px 50px 70px}
+.nav_part{background-color:#0f0; font-size:30px}
+.side_part{background-color:#00f;color:#fff;}
+.nav_item{display:inline;}
+{% endblock  %}
+{% block content %}
+{% load static %}
+
+<div class="d-flex justify-content-center"><img  class="photo_part" src="{% static 'logo.jpg' %}" alt="logo Image"></div>
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="vip_register">會員註冊</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="webuser_admin">使用者資訊</a>
+  </li>
+  {% comment %} <li class="nav-item">
+    <a class="nav-link" href="test">測試驗證頁</a>
+  </li> {% endcomment %}
+    <li class="nav-item">
+    <a class="nav-link" href="upload_image">上傳商品</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="product_buy">商品選購</a>
+  </li>
+   </li>
+    <li class="nav-item">
+    <a class="nav-link" href="shopcar_show">購物車</a>
+  </li>
+   </li>
+   </li>
+ 
+
+  
+  {% if request.user.is_authenticated  %}
+  <li class="nav-item">
+    <a class="nav-link" href="api_product_getall/{{username}}">API端點JSON格式</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="mp3">轉mp3</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="mp4">轉mp4</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="av">test</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="logout">登出</a>
+  </li>
+  {% endif %}
+</ul>
+
+{% if request.user.is_authenticated  %}
+<div class="d-flex justify-content-center"><h2>歡迎光臨: &nbsp {{ request.user }}</h2></div>
+<div class="d-flex justify-content-center" ><h2>基本商品上傳之相關CRUD功能已建立，本練習平台持續精進中</h2></div>
+<div class="d-flex justify-content-center" ><h2>滾石不生笞，一起轉動吧!!!</h2></div>
+
+
+{% endif %}
+{% comment %} 
+
+<div class="nav_part">
+	<div class="nav_item"><a href="/vip_register">Vip</a></div>
+	<div class="nav_item"><a href="/webuser_admin">使用者資訊</a></div>
+	<div class="nav_item"><a  href="test">測試驗證頁</a></div>
+	<div class="nav_item"><a  href="upload_image">上傳商品</a></div>
+	<div class="nav_item"><a  href="product_buy">商品選購</a></div>
+
+	{% if request.user.is_authenticated  %}
+		<div class="nav_item"><a href="/logout">登出</a></div>
+	{% else %}
+	{% endif %}
+</div>
+<div class="side_part">
+{% if request.user.is_authenticated  %}
+<h2>歡迎光臨: &nbsp {{ request.user }}</h2>
+
+{% else %}
+{% endif %}
+</div>
+ {% endcomment %}
+
+
+{% endblock  %}

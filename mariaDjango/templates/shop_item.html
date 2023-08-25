@@ -1,0 +1,16 @@
+{%  extends "base.html" %} 
+
+{% block content %}
+<!--{{item_name}}
+{{item_description}}
+{{item_price}}
+
+<img src="{{ item_photo_image.url }}" width = '300'/>   -->
+{% for d  in item_list %}
+{{ d.item_name}}
+{{ d.item_descriptions}}
+{{ d.item_price}}
+<img src="{{ d.item_photo_image.url }}" width ="300"/>
+{% endfor  %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  {% for p in product_list %}
+  <!-- 用響應式的方式限定每個col在md模式時佔4格,一列最多12格-->
+    <div class="col-md-4">
+    <!--以下是每張卡片的格式,寬度為18rem,即預設的字型大小,18個字-->
+      <div class="card" style="width: 18rem;">
+      <!-- 不是設定path的話,要用這種方式帶出圖案-->
+        <img src="{{ p.item_photo_path }}" width="300"  height="300"/>
+        <div class="card-body">
+          <h5 class="card-title">{{ p.item_name }}</h5>
+          <p class="card-text">{{ p.item_description }}</p>
+          <a href="product_select/{{ p.productid}}" class="btn btn-primary">選購商品</a>
+        </div>
+      </div>
+    </div>
+
+    {% if forloop.counter|divisibleby:3 %}
+      </div>
+      <div class="row">
+    {% endif %}
+  {% endfor %}
+<a href="/seric/index">返回首頁</a>
+</div>
+
+{% comment %} {% for d in product_list %}
+{{d.item_id}}
+{{d.item_name}}
+{{d.item_description}}
+{{d.item_price}}
+<img src="{{ d.item_photo_path }}" alt="{{ d.item_name }}" width="300">
+{% endfor%} {% endcomment %}
+{% endblock %}

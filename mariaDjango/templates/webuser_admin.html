@@ -1,0 +1,65 @@
+{% extends "base.html"  %}
+{% block style  %} 
+
+.tb{border:solid 3px red;;font-size:8px; margin: 50px auto;caption-side:top;}
+.tb th ,.tb td{ 
+    border: solid 1px red;
+    padding: 5px;}
+.tb caption {
+    text-align: center;
+    font-size:8px;
+    color:black;
+    
+}
+    
+{% endblock  %}
+{% block content %}
+<div><a  href="index">返回首頁<a></div>
+
+<table class="tb" >
+<caption>使用者資訊</caption>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>first_name</th>
+<th>last_name</th>
+<th>嗜好</th>
+<th>地址</th>
+<th>電話</th>
+<th>管理者權限</th>
+<th>超級使用者</th>
+<th>帳號權限</th>
+{% comment %} <th>密碼</th> {% endcomment %}
+<th>更新時間</th>
+<th colspan="2">編輯功能</th>
+</tr>
+{% for user_num in user_list %}
+
+<tr>
+
+<td>{{user_num.id}}</td>
+<td>{{user_num.username}}</td>
+<td>{{user_num.first_name}}</td>
+<td>{{user_num.last_name}}</td>
+<td>{{user_num.hobit}}</td>
+<td>{{user_num.addr}}</td>
+<td>{{user_num.phone}}</td>
+<td>{{user_num.is_staff}}</td>
+<td>{{user_num.is_superuser}}</td>
+<td>{{user_num.is_active}}</td>
+{% comment %} <td>{{user_num.password}}</td>     {% endcomment %}
+<td>{{user_num.date_joined}}</td>
+
+
+
+<td><a href="/seric/webuser/{{user_num.id}}/update/load">update</a></td>
+<td><a href="/seric/webuser/{{user_num.id}}/delete/load">delete</a></td>
+</tr>
+{% endfor  %}
+
+
+</table>
+
+
+
+{% endblock  %}

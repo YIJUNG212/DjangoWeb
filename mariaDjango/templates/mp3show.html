@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MP3 下载</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#downloadButton').click(function() {
+                var fileName = $(this).data('encoded_filename');
+                var filePath = $(this).data('filePath');  // 获取自定义属性中的文件路径
+                var downloadUrl = 'http://homepi.myftp.org:8000/mp3/?filePath=' + encodeURIComponent(filePath) +
+                '&fileName=' + encodeURIComponent(fileName);
+
+                var link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = fileName;
+                
+                // 设置正确的 Content-Type 和 Accept-Ranges 标头
+                link.setAttribute('type', 'audio/mpeg');
+                link.setAttribute('accept-ranges', 'bytes');
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <h1>MP3 下载</h1>
+    <p>点击以下链接来下载 MP3 文件：</p>
+    <button id="downloadButton" data-file-name="{{filename}}" data-file-path="{{ filePath }}">下载文件</button>
+</body>
+</html>

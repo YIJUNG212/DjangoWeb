@@ -1,0 +1,78 @@
+{% extends "base.html"  %}
+
+{% block style  %}
+.addform{width:300px;height:600px;
+margin:100px auto 100px;
+background-color:blue;
+padding:20px ;
+color:#FFF;}
+.register_data{
+  box-sizing: border-box;
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+}
+.alink{color:white;}
+{% endblock  %}
+
+{% block title   %}register  {% endblock  %}
+
+
+{% block content   %}
+<div class="addform">
+<h3>新增帳號密碼</h3>
+<form action="/seric/api/vip_user_add"  method="POST">
+	{% csrf_token  %}
+	
+
+	<div>帳號:  <input class="register_data" type="text" name="username" id="username"> </div>
+	<div>密碼: <input class="register_data" type="password" name="password" id="password"></div>
+	<div>confirm密碼: <input class="register_data" type="password" name="password_confirm" id="password_confirm"></div>
+	{% if user.is_staff or user.is_superuser %}
+	<div>超級管理者權限
+	 <label for="superuser0">
+            <input  type="radio" id="superuser0" name="superuser" value="0"> 沒有
+	</label>
+	<label for="superuser1">
+		<input type="radio" id="superuser" name="superuser" value="1"> 有
+	</label>
+	</div>
+
+	<div>管理者權限
+	 <label for="staff0">
+            <input type="radio" id="staff0" name="staff" value="0"> 沒有
+	</label>
+	<label for="staff1">
+		<input type="radio" id="staff1" name="staff" value="1"> 有
+	</label>
+	</div>
+	
+	{% endif %}
+	{% if user.is_staff and not user.is_superuser %}
+	
+	<div>管理者權限
+	 <label for="staff0">
+            <input type="radio" id="staff0" name="staff" value="0"> 沒有
+	</label>
+	<label for="staff1">
+		<input type="radio" id="staff1" name="staff" value="1"> 有
+	</label>
+	</div>
+	{% endif %}
+
+
+
+
+<!--	<div>電話 <input class="register_data" type="tel" name="phone"  id="phone"  ></div>
+	<div>住址 <input class="register_data" type="text" name="addr" id="addr">  </div>
+	<div>嗜好  <input class="register_data" type="text"  name="hobit"  id="hobit"></div>
+	<div>first_name<input class="register_data" type="text" name="first_name" id="firstname"></div>
+	<div>last_name<input class="register_data" type="text" name="last_name" id="last_name"></div>
+	<div>email<input class="register_data" type="email" name="email" id="email"></div>  -->
+	<div ><input  type="submit" name="button" id="button" value="submit">  </div>
+	<div><a href="login3" class="alink">已有帳號，請按此登入</a></div>
+	
+</form>
+</div>
+
+{% endblock  %}

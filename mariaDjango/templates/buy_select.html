@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/seric/shopcar" method="POST">
+{% csrf_token %}
+  <div class="mb-3">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="{{ pro_select.item_photo_path }}" width="300" height="300"/>
+        <div class="card-body">
+          <h5 class="card-title" >品名:{{ pro_select.item_name }}</h5>
+          <p class="card-text"   >產品編號:{{ pro_select.productid }}</p>
+          <input type="hidden" name="item_name" value="{{ pro_select.item_name }}">
+          <input type="hidden" name="item_id" value="{{ pro_select.productid }}">
+          <input type="hidden" name="price" value="{{ pro_select.item_price }}">
+
+          <p class="card-text"  >{{ pro_select.item_description }}</p>
+          <p class="card-text"  >{{ pro_select.item_price }}</p>
+          <div class="card-text">
+            <label for="quantity" class="form-label">Quantity</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1">
+            
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">確定選購</button>
+  </div>
+</form>
+
+{% endblock %}
+

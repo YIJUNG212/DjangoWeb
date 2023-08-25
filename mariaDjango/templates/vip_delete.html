@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+.delform{
+width:300px;height:600px;
+margin:10px auto 30px;
+background-color:#000;
+padding:20px ;
+color:#FFF;
+border:sloid red 10px;
+position:relative;
+
+}
+.delform span{
+  box-sizing: border-box;
+  width:100%; 
+  padding: 5px; 
+
+}
+.leftbutton{  
+  text-align:center;
+  margin-top:20px;
+ }
+
+{% endblock %}
+
+{% block content %}
+<form action="/seric/webuser/{{field_data.id}}/delete/delete"  method="POST">
+<table class="delform">
+{% csrf_token %}
+<tr>
+<td >帳號:&nbsp&nbsp&nbsp   <span>{{ field_data.username }}</span ></td>
+</tr>
+<tr>
+<td>嗜好:&nbsp&nbsp&nbsp <span>{{ field_data.hobit  }}</span></td>
+</tr>
+<tr>
+<td>first_name:&nbsp&nbsp&nbsp <span>{% if field_data.first_name == '' %}None{% else %}{{ field_data.first_name }}{% endif %}</span></td>
+</tr>
+<tr>
+<td>last_name:&nbsp&nbsp&nbsp <span>{% if field_data.last_name == '' %}None{% else %}{{ field_data.last_name }}{% endif %}</span></td>
+</tr>
+
+
+
+</table>
+<div class="leftbutton"><button  onclick="doublecheck();">delete</button>
+<button onclick="back_to_index();">index</button>
+</div>
+</form>
+
+{% endblock %}
+
+
+{% block script  %}
+<script>
+  function doublecheck() {
+    var recheck = confirm("\n sure to delete data\n after delete can't back");
+    if (recheck) {
+        alert("{{ field_data.username }} is deleted");
+        // 这里可以添加调用删除的代码
+        // 删除代码...
+    } else {
+        alert("cancelled");
+        setTimeout(function() {
+            window.location.href = 'https://homepi.myftp.org/seric/webuser/{{field_data.id}}/delete/load';
+        }, 0);
+    }
+}
+
+
+  function back_to_index(){
+    setTimeout(function(){
+       window.location.href = 'https://homepi.myftp.org/serc/index';
+    }, 0);
+
+  }
+  </script>
+{% endblock  %}

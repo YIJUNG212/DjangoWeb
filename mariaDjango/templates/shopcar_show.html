@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container text-left">
+  <form action="shopitem_action" method="POST" id="form_main">
+    {% csrf_token %}
+    <div class="row">
+      {% for item in new_shopitem_list %}
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="{{ item.item_photo_path }}" class="card-img-top" alt="產品圖片" width="300" height="300" />
+          <div class="card-body">
+            <h5 class="card-title">品名: {{ item.show_shopitem_Productname }}</h5>
+            <p class="card-text">商品品項: {{ item.show_product_serial }}</p>
+            <p class="card-text">單價: {{ item.show_shopitem_item_price}}</p>
+            <p class="card-text">數量: <input type="number" name="quantity" id="quantity" value="{{ item.show_shopitem_quantity }}" required></p>
+            <p class="card-text">小計: {{ item.show_shopitem_item_sum }}</p>
+
+            <!-- 不顯示,但實際上要送值的幾個欄位 -->
+            <input type="hidden" name="price" id="price" value="{{ item.show_shopitem_item_price }}">
+            <input type="hidden" name="item_sum" id="item_sum" value="{{ item.show_shopitem_item_sum }}">
+            <input type="hidden" name="item_id" id="item_id_input_{{ show_shopitem_id }}" value="{{ show_shopitem_id }}">
+            <input type="hidden" name="item_name" id="item_name" value="{{ item.show_shopitem_Productname }}">
+
+            <button href="#" class="btn btn-primary" onclick="CancelShopitem('{{ show_shopitem_id }}','delete');">刪除</button>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+      {% endif %}
+      {% endfor %}
+    </div>
+ 
+    <button type="button" class="btn btn-warning" onclick="SendtoOrder();"  >送出訂單</button>
+    <button type="button" class="btn btn-warning" onclick="continuetoBuy();">繼續購物</button>
+  </form>
+</div>
+
+{% comment %} 
+
+<form action="shopitem_action" method="POST" id="form_main">
+  {% csrf_token %}
+  <div class="center">
+    <div class="card-container">
+      <div class="row">
+        {% for item in new_shopitem_list %}
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{ item.image.url }}" class="card-img-top" alt="產品圖片" width="300" height="300" />
+            <div class="card-body">
+              <h5 class="card-title">品名: {{ item.pro }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <input type="hidden" name="price" id="price" value="{{ item.item_price }}" >
+              <li class="list-group-item">單價: {{ item.item_price }}</li>
+              <li class="list-group-item">數量: <input type="number" name="quantity" id="quantity" value="{{ item.item_quantity }}" required></li>
+              <li class="list-group-item">小計: {{ item.item_sum }}</li>
+              <input type="hidden" name="item_sum" id="item_sum" value="{{ item.item_sum }}" >
+              <input type="hidden" name="item_id" id="item_id_input_{{ item.id }}" value="{{ item.id }}">
+              <li class="list-group-item">商品品項: {{ item.id }}</li>
+              <input type="hidden" name="item_name" id="item_name" value="{{ item.item_name }}" >
+            </ul>
+            <button onclick="CancelShopitem('{{ item.id }}','delete');">取消</button>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+      </div>
+      <div class="row">
+        {% endif %} 
+        {% endfor %}
+      </div>
+      
+    </div>
+    
+    <div class="center-bottom">
+      <button class="buttons" onclick="SendtoOrder();">送出訂單</button>
+      <button class="buttons" onclick="continuetoBuy();">繼續購物</button>
+    
+    </div>
+      
+  </div>
+</form> {% endcomment %}
+
+
+{% endblock %}
+{% block script %}
+<script>
+{% comment %} 用這個方法可以將抓取的變數當做POST值送出去 {% endcomment %}
+function CancelShopitem(itemId,actionType) {
+  var recheck = confirm("確定刪除商品?!");
+  if (recheck) {
+    alert("商品 " + itemId + " 已取消");
+    // 创建一个新的隐藏表单字段
+    var hiddenInput = document.createElement("input");
+    hiddenInput.setAttribute("type", "hidden");
+    hiddenInput.setAttribute("name", "item_id");
+    hiddenInput.setAttribute("value", itemId);
+     // 添加操作类型的隐藏字段
+    var actionInput = document.createElement("input");
+    actionInput.setAttribute("type", "hidden");
+    actionInput.setAttribute("name", "action_type");
+    actionInput.setAttribute("value", actionType);
+    // 将隐藏字段添加到表单中
+    {% comment %} document.getElementById("form_main").appendChild(hiddenInput);
+    // 提交表单
+    document.getElementById("form_main").submit(); {% endcomment %}
+ // 将隐藏字段添加到表单中
+    var form = document.getElementById("form_main");
+    form.appendChild(hiddenInput);
+    form.appendChild(actionInput);
+    // 提交表单
+    form.submit();
+
+  } else {
+    alert("撤回");
+  }
+}
+// 在提交表单之前检查是否已取消商品
+document.getElementById("form_main").addEventListener("submit", function(e) {
+  if (!cancelled) {
+    e.preventDefault(); // 取消表单提交
+    alert("请先取消商品"); // 提示用户取消商品
+  }
+});
+</script>
+
+<script>
+function SendtoOrder(){
+  var recheck = confirm("確定送出訂單?!");
+  if (recheck){
+    alert("訂單已送出!");
+   
+   
+   
+  }else{
+    alert("已取消訂單!");
+    setTimeout(function(){
+      window.location.href="https://homepi.myftp.org/seric/shopcar_show"
+    },0);
+  }
+}
+</script>
+<script>
+function continuetoBuy(){
+  var recheck= confirm("回到購物清單");
+  if(recheck){
+    setTimeout(function(){
+      window.location.href="https://homepi.myftp.org/seric/product_buy"
+    },0);
+    
+
+  }else{
+    alert("返回購物車");
+    setTimeout(function(){
+      window.location.href="https://homepi.myftp.org/seric/shopcar_show"
+    },0);
+  }
+}
+</script>
+{% endblock %}

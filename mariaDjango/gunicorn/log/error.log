@@ -1,0 +1,242 @@
+[2023-08-01 00:03:05 +0800] [17854] [DEBUG] Current configuration:
+  config: g_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/seric/DjangoProject/mariaDjango/mariaDjango
+  daemon: True
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/seric/DjangoProject/mariaDjango/mariaDjango/gunicorn/log/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: {'request_date':%(t)s, 'remote_ip':%(h)s,'request_id':%({X-Request-Id}i)s,'response_code':%(s)s,'request_method':%(m)s,'request_path':%(U)s,'request_querystring': %(q)s>
+  errorlog: /home/seric/DjangoProject/mariaDjango/mariaDjango/gunicorn/log/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: myapp:app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0xf6c68e80>
+  on_reload: <function OnReload.on_reload at 0xf6c68f10>
+  when_ready: <function WhenReady.when_ready at 0xf6c68fa0>
+  pre_fork: <function Prefork.pre_fork at 0xf6bb70b8>
+  post_fork: <function Postfork.post_fork at 0xf6bb7148>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0xf6bb7220>
+  worker_int: <function WorkerInt.worker_int at 0xf6bb72b0>
+  worker_abort: <function WorkerAbort.worker_abort at 0xf6bb7340>
+  pre_exec: <function PreExec.pre_exec at 0xf6bb73d0>
+  pre_request: <function PreRequest.pre_request at 0xf6bb7460>
+  post_request: <function PostRequest.post_request at 0xf6bb74a8>
+  child_exit: <function ChildExit.child_exit at 0xf6bb7580>
+  worker_exit: <function WorkerExit.worker_exit at 0xf6bb7610>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xf6bb76a0>
+  on_exit: <function OnExit.on_exit at 0xf6bb7730>
+  ssl_context: <function NewSSLContext.ssl_context at 0xf6bb77c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-08-01 00:03:05 +0800] [17854] [INFO] Starting gunicorn 21.2.0
+[2023-08-01 00:03:05 +0800] [17854] [DEBUG] Arbiter booted
+[2023-08-01 00:03:05 +0800] [17854] [INFO] Listening at: http://0.0.0.0:8000 (17854)
+[2023-08-01 00:03:05 +0800] [17854] [INFO] Using worker: sync
+[2023-08-01 00:03:05 +0800] [17855] [INFO] Booting worker with pid: 17855
+[2023-08-01 00:03:05 +0800] [17855] [DEBUG] Exception while loading the application
+Traceback (most recent call last):
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/util.py", line 414, in import_app
+    app = getattr(mod, name)
+AttributeError: module 'myapp' has no attribute 'app'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/util.py", line 418, in import_app
+    raise AppImportError("Failed to find attribute %r in %r." % (name, module))
+gunicorn.errors.AppImportError: Failed to find attribute 'app' in 'myapp'.
+[2023-08-01 00:03:05 +0800] [17855] [INFO] Worker exiting (pid: 17855)
+[2023-08-01 00:03:06 +0800] [17854] [ERROR] Worker (pid:17855) exited with code 4
+[2023-08-01 00:03:06 +0800] [17854] [ERROR] Shutting down: Master
+[2023-08-01 00:03:06 +0800] [17854] [ERROR] Reason: App failed to load.
+[2023-08-01 00:08:12 +0800] [17942] [DEBUG] Current configuration:
+  config: g_config.py
+  wsgi_app: None
+  bind: ['0.0.0.0:8000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: True
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/seric/DjangoProject/mariaDjango/mariaDjango
+  daemon: True
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/seric/DjangoProject/mariaDjango/mariaDjango/gunicorn/log/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: {'remote_ip':'%(h)s', %(l)s %(u)s %(t)s %(r)s %(s)s %(b)s %(f)s %(a)s %(l)s %(D)s}
+  errorlog: /home/seric/DjangoProject/mariaDjango/mariaDjango/gunicorn/log/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: myapp:app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0xf6ff0e80>
+  on_reload: <function OnReload.on_reload at 0xf6ff0f10>
+  when_ready: <function WhenReady.when_ready at 0xf6ff0fa0>
+  pre_fork: <function Prefork.pre_fork at 0xf6f3f0b8>
+  post_fork: <function Postfork.post_fork at 0xf6f3f148>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0xf6f3f220>
+  worker_int: <function WorkerInt.worker_int at 0xf6f3f2b0>
+  worker_abort: <function WorkerAbort.worker_abort at 0xf6f3f340>
+  pre_exec: <function PreExec.pre_exec at 0xf6f3f3d0>
+  pre_request: <function PreRequest.pre_request at 0xf6f3f460>
+  post_request: <function PostRequest.post_request at 0xf6f3f4a8>
+  child_exit: <function ChildExit.child_exit at 0xf6f3f580>
+  worker_exit: <function WorkerExit.worker_exit at 0xf6f3f610>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xf6f3f6a0>
+  on_exit: <function OnExit.on_exit at 0xf6f3f730>
+  ssl_context: <function NewSSLContext.ssl_context at 0xf6f3f7c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-08-01 00:08:12 +0800] [17942] [INFO] Starting gunicorn 21.2.0
+[2023-08-01 00:08:12 +0800] [17942] [DEBUG] Arbiter booted
+[2023-08-01 00:08:12 +0800] [17942] [INFO] Listening at: http://0.0.0.0:8000 (17942)
+[2023-08-01 00:08:12 +0800] [17942] [INFO] Using worker: sync
+[2023-08-01 00:08:12 +0800] [17943] [INFO] Booting worker with pid: 17943
+[2023-08-01 00:08:12 +0800] [17943] [DEBUG] Exception while loading the application
+Traceback (most recent call last):
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/util.py", line 414, in import_app
+    app = getattr(mod, name)
+AttributeError: module 'myapp' has no attribute 'app'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/seric/DjangoProject/mariaDjango/lib/python3.9/site-packages/gunicorn/util.py", line 418, in import_app
+    raise AppImportError("Failed to find attribute %r in %r." % (name, module))
+gunicorn.errors.AppImportError: Failed to find attribute 'app' in 'myapp'.
+[2023-08-01 00:08:12 +0800] [17943] [INFO] Worker exiting (pid: 17943)
+[2023-08-01 00:08:12 +0800] [17942] [ERROR] Worker (pid:17943) exited with code 4
+[2023-08-01 00:08:12 +0800] [17942] [ERROR] Shutting down: Master
+[2023-08-01 00:08:12 +0800] [17942] [ERROR] Reason: App failed to load.
