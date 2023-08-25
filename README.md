@@ -1,5 +1,5 @@
 # DjangoWeb
-Django網站，基本圖形上傳，資料庫CRUD及youtube網站mp3、mp4轉檔功能
+Django網站，基本圖形上傳，資料庫CRUD及youtube網站mp3、mp4轉檔
 
 ※基本功能說明
 
