@@ -15,4 +15,5 @@ Django網站，基本圖形上傳，資料庫CRUD及youtube網站mp3、mp4轉檔
 5.使用JAVASCRIPT 客製化按鈕，使按鈕動作後會提示，並藉由不同操作得到不同效果，如確認送出或取消。<br>
 
 6.購物車商品欄已可判斷有無重複商品,有重複就執行update指令,沒重複就執行insert into指令，商品欄新增同時,資料表shopsum也會新增現有所有商品總和<br>
+
 7.利用pytube簡單實作了youtube的mp3、mp4轉檔功能,下載資源不受限<br>
