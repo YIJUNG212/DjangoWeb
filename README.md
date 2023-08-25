@@ -1,5 +1,6 @@
 # DjangoWeb
 Django網站，基本圖形上傳，資料庫CRUD及youtube網站mp3、mp4轉檔功能
+
 ※基本功能說明
 
 1.可以藉由繼承django內部模組abstractUser來擴充原有的User模組的欄位 並且藉由authenticate來判斷使用者登錄情況，藉以區別不同帳號登入情況及登入後執行權限 <br>
